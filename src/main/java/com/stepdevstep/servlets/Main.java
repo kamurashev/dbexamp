@@ -71,7 +71,7 @@ public class Main extends HttpServlet {
         books = books.subList(from,to);                                             //список книг //для отображения
 
         for (Audiobook ab : books)                                                  //Формируем укороченные версии
-            ab.setDescription(String.format("%225.225s", ab.getDescription()));     //описаний для отображения
+            ab.setDescription(String.format("%220.220s", ab.getDescription()));     //описаний для отображения
 
         req.setAttribute("books",books);
         req.getRequestDispatcher("Main.jsp").forward(req, resp);
