@@ -1,0 +1,222 @@
+body {
+   padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+header {
+    background: url("/img/hdr_bckgrnd1.jpg") no-repeat center top / cover;
+    height: 300px;
+}
+header h2 {
+    margin: 0;
+    padding: 0;
+}
+
+div {
+    box-sizing: border-box;
+}
+
+.container{
+    width: 1400px;
+    margin: 0 auto;
+}
+
+.m_heading {
+    font-size: 50px;
+    padding-top: 40px;
+}
+
+section {
+    background: url("/img/mn_bckgrnd.jpg") no-repeat center top / cover;
+    padding: 5px;
+}
+.items_cont {
+    width: 1000px;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+
+}
+.message {
+    color: red;
+    font-size: 30px;
+    text-align: left;
+    text-transform: uppercase;
+    display: block;
+    letter-spacing: 1px;
+}
+.admin {
+    color: white;
+    font-size: 16px;
+}
+.item_cont {
+    padding: 18px;
+    background-color: rgba(100,100,100,0.5);
+    border-radius: 10px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    position: relative;
+    overflow: hidden;
+}
+.cov_short {
+    float: left;
+    display: block;
+    position: relative;
+}
+.cov_short a img{
+    width: 265px;
+    height: 365px;
+}
+
+.short {
+    float: left;
+    width: 680px;
+}
+.short h4{
+    margin: 0;
+    text-align: center;
+    display: block;
+    color: white;
+}
+
+h2 {
+    font-size: 28px;
+    text-align: center;
+    text-transform: uppercase;
+    margin-top: 6px;
+    color: #fffd;
+    letter-spacing: 1px;
+}
+
+.info {
+    margin-top: 32px;
+    font-size: 18px;
+    color: #fffc;
+}
+.info li{
+    margin-top: 12px;
+    border-bottom: 1px solid rgba(100,100,100,1);
+    padding-bottom: 4px;
+    display: block;
+}
+.info li a{
+    margin-top: 12px;
+    color: #e4dd4b;
+    letter-spacing: 1px;
+}
+.info p {
+    margin-top: 12px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+.s_description {
+    font-size: 16px;
+    margin: 20px 0 0 35px;
+    text-align: justify;
+}
+.views {
+    margin: 0 0 0 25px;
+    padding: 0;
+    display: inline-block;
+    float: left;
+}
+.views img {
+    width: 65px;
+    height: 65px;
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+.views p {
+    font-size: 26px;
+    color: white;
+    float: left;
+    display: inline-block;
+    margin: 18px 0 0 8px;
+    padding: 0;
+}
+.button {
+    background-color: #e4dd4b;
+    width: 165px;
+    height: 60px;
+    border-radius: 15px;
+    text-align: center;
+    padding: 18px;
+    margin: 0 0 0 12px;
+    float: right;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+.button a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.n\/b {
+    margin-left: 225px;
+}
+
+.page_n {
+    font-size: 18px;
+    width: 60px;
+    height: 60px;
+    border: 2px white solid;
+    border-radius: 30px;
+    background-color: #e4dd4b;
+    text-align: center;
+    display: inline-block;
+    margin: 0;
+    padding:  18px 0 18px 0;
+
+}
+
+.button2 {
+    background-color: #e4dd4b;
+    width: 175px;
+    height: 60px;
+    border-radius: 15px;
+    text-align: center;
+    padding: 18px;
+    margin: 18px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+
+.menu {
+    float: right;
+    background: rgba(100,100,100,0.2);
+    border: rgba(100,100,100,1) solid 1px;
+    width: 350px;
+    display: inline-block;
+    margin: 25px 0 0 10px;
+    padding: 15px;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+}
+.menu input, select {
+    margin: 10px 5px 10px 5px;
+    color: #222;
+    width: 300px;
+    height: 28px;
+    background-color: #f2f2f2;
+    box-shadow: 0 0 0 1px #e3e3e3;
+    cursor: text;
+    border-radius: 6px;
+}
+.menu_headings_font {
+    text-align: center;
+    text-transform: uppercase;
+    color: #fffd;
+}
+
+footer {
+    background: url("/img/ListenUpjpg.jpg") no-repeat center top / cover;
+    height: 400px;
+}
+
