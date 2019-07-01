@@ -29,34 +29,33 @@ public class Delete extends HttpServlet {
 
         int affected = dao.deleteBook(book_id);
 
-        if (affected==0) {
+        if (affected == 0) {
             message = "Something gone wrong with deleting procedure, DB wasn't modified," +
                     " nothing was deleted from server";
-            response.sendRedirect("/?message="+message);
+            response.sendRedirect("/?message=" + message);
             return;
-        }
-        else
-            message = "DB entry for Book ID="+book_id+" deleted successfully, ";
+        } else
+            message = "DB entry for Book ID=" + book_id + " deleted successfully, ";
 
-        String path = book.getCover().replace(upContext,upRoot);
-        path = path.substring(0,path.lastIndexOf("\\"));
+        String path = book.getCover().replace(upContext, upRoot);
+        path = path.substring(0, path.lastIndexOf("\\"));
         File bookDirectory = new File(path);
         System.out.println(path);
 
         try {
             FileUtils.deleteDirectory(bookDirectory);
         } catch (Exception e) {
-            message+="files NOT deleted from server, see server console for details.";
+            message += "files NOT deleted from server, see server console for details.";
             e.printStackTrace();
         }
         if (!bookDirectory.exists())
-            message+="files deleted from server.";
+            message += "files deleted from server.";
 
-        response.sendRedirect("/?message="+message);
+        response.sendRedirect("/?message=" + message);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-            response.sendRedirect("/?message=You can do this through main page interface only!");
+        response.sendRedirect("/?message=You can do this through main page interface only!");
     }
 }

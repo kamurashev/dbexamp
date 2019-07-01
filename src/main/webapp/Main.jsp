@@ -1,8 +1,8 @@
-<%@ page pageEncoding="utf-8" contentType="text/html; charset=utf-8"%>
+<%@ page pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" >
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <title>Аудиокниги скачать бесплатно mp3 - ReedManiac</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Main.css"/>
 </head>
@@ -21,14 +21,14 @@
             <p class="message">${param.message}</p>
             <p class="admin">Logged in as ${sessionScope.supervisor.login} - ${sessionScope.supervisor.role}</p>
         </div>
-            <p class="message">${param.searchfail}</p>
+        <p class="message">${param.searchfail}</p>
         <div class="items_cont">
             <c:forEach var="book" items="${requestScope.books}">
                 <div class="item_cont">
                     <div class="cov_short">
                         <a href="showfull?id=${book.book_id}" title="Аудиокнига ${book.name}">
-                        <img src="${pageContext.request.contextPath}${book.cover}"
-                        alt="Аудиокнига ${book.name}"> </a>
+                            <img src="${pageContext.request.contextPath}${book.cover}"
+                                 alt="Аудиокнига ${book.name}"> </a>
                     </div>
                     <div class="short">
                         <h2>${book.name}</h2>
@@ -49,7 +49,7 @@
                         </ul>
                         <div class="s_description">
                             <p>
-                                ${book.description}...
+                                    ${book.description}...
                             </p>
                         </div>
                         <div class="views">
@@ -107,7 +107,9 @@
                 <input type="hidden" name="speaker" value=${requestScope.speaker}>
                 <input type="hidden" name="name" value=${requestScope.name}>
                 <input type="hidden" name="order" value=${requestScope.order}>
-                <button class="button2" type="submit" name="page_n" value="${requestScope.page_n <= 1 ? 1 : requestScope.page_n-1}">back</button>
+                <button class="button2" type="submit" name="page_n"
+                        value="${requestScope.page_n <= 1 ? 1 : requestScope.page_n-1}">back
+                </button>
                 <div class="page_n"><b>${requestScope.page_n}</b></div>
                 <button class="button2" type="submit" name="page_n" value="${requestScope.page_n+1}">next</button>
             </form>

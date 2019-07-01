@@ -15,20 +15,20 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.ResourceBundle;
 
-@WebServlet (name = "Main", urlPatterns = {"","/main"}, loadOnStartup = 1)
+@WebServlet(name = "Main", urlPatterns = {"", "/main"}, loadOnStartup = 1)
 public class Main extends HttpServlet {
     private ABookDAOi dao = new HibABookDAO();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int page_n=1;
+        int page_n = 1;
         int maxPage_n;
         int from;
         int to;
-        int booksPerPage=5;
+        int booksPerPage = 5;
 
         ResourceBundle rb = ResourceBundle.getBundle("global");
-        if(rb.containsKey("booksPerPage"))
+        if (rb.containsKey("booksPerPage"))
             try {
                 booksPerPage = Integer.parseInt(rb.getString("booksPerPage"));
             } catch (NumberFormatException e) {
@@ -36,44 +36,44 @@ public class Main extends HttpServlet {
             }
 
 
-        req.setAttribute("genre", req.getParameter("genre")==null? "" : req.getParameter("genre"));
-        req.setAttribute("author", req.getParameter("author")==null? "" : req.getParameter("author"));
-        req.setAttribute("speaker", req.getParameter("speaker")==null? "" : req.getParameter("speaker"));
-        req.setAttribute("name", req.getParameter("name")==null? "" : req.getParameter("name"));
-        req.setAttribute("order", req.getParameter("order")==null? "" : req.getParameter("order"));
+        req.setAttribute("genre", req.getParameter("genre") == null ? "" : req.getParameter("genre"));
+        req.setAttribute("author", req.getParameter("author") == null ? "" : req.getParameter("author"));
+        req.setAttribute("speaker", req.getParameter("speaker") == null ? "" : req.getParameter("speaker"));
+        req.setAttribute("name", req.getParameter("name") == null ? "" : req.getParameter("name"));
+        req.setAttribute("order", req.getParameter("order") == null ? "" : req.getParameter("order"));
 
         List<Audiobook> books = dao.getBooks(
-                (String)req.getAttribute("genre"),                               //Получаем из
-                (String)req.getAttribute("author"),                              //bd
-                (String)req.getAttribute("speaker"),                             //все
-                (String)req.getAttribute("name"),                                //книги
-                (String)req.getAttribute("order"));                              //соотв. критериям
+                (String) req.getAttribute("genre"),                               //Получаем из
+                (String) req.getAttribute("author"),                              //bd
+                (String) req.getAttribute("speaker"),                             //все
+                (String) req.getAttribute("name"),                                //книги
+                (String) req.getAttribute("order"));                              //соотв. критериям
 
-        if(books.isEmpty()){
+        if (books.isEmpty()) {
             String searchFail = "К сожалению по вашему запросу" +
                     " ничего не найдено, проверьте" +
                     " правильность введенных для поиска данных.";
-            resp.sendRedirect("/main?searchfail="+ URLEncoder.encode(searchFail, StandardCharsets.UTF_8));
+            resp.sendRedirect("/main?searchfail=" + URLEncoder.encode(searchFail, StandardCharsets.UTF_8));
             return;
         }
 
-        maxPage_n = (int)Math.ceil(books.size()/(double)booksPerPage);              //считаем
-        if(req.getParameter("page_n")!=null)                                     //валидный
+        maxPage_n = (int) Math.ceil(books.size() / (double) booksPerPage);          //считаем
+        if (req.getParameter("page_n") != null)                                  //валидный
             page_n = Integer.parseInt(req.getParameter("page_n"));               //page_n
-        if(page_n>maxPage_n)                                                        //и
+        if (page_n > maxPage_n)                                                     //и
             page_n = maxPage_n;                                                     //добавляем
-        if (page_n<1)                                                               //его
-            page_n=1;                                                               //в
+        if (page_n < 1)                                                             //его
+            page_n = 1;                                                             //в
         req.setAttribute("page_n", page_n);                                      //запрос
 
-        from = (page_n-1)*booksPerPage;                                             //формируем
-        to = (from + booksPerPage)<books.size()?from+booksPerPage : books.size();   //укороченный
-        books = books.subList(from,to);                                             //список книг //для отображения
-
+        from = (page_n - 1) * booksPerPage;                                         //формируем
+        to = (from + booksPerPage) < books.size() ? from + booksPerPage : books.size();   //укороченный
+        books = books.subList(from, to);                                            //список книг
+                                                                                    // для отображения
         for (Audiobook ab : books)                                                  //Формируем укороченные версии
             ab.setDescription(String.format("%220.220s", ab.getDescription()));     //описаний для отображения
 
-        req.setAttribute("books",books);
+        req.setAttribute("books", books);
         req.getRequestDispatcher("Main.jsp").forward(req, resp);
     }
 

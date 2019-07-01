@@ -1,7 +1,7 @@
-<%@ page pageEncoding="utf-8" contentType="text/html; charset=utf-8"%>
+<%@ page pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
 <html>
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" >
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <title>Аудиокнига - ${requestScope.book.name} - ReedManiac</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/FullBook.css"/>
 </head>
@@ -26,13 +26,16 @@
                     <h2>${requestScope.book.name}</h2>
                     <ul class="info">
                         <li>
-                            Автор: <a href="${pageContext.request.contextPath}/?author=${requestScope.book.author}">${requestScope.book.author}</a>
+                            Автор: <a
+                                href="${pageContext.request.contextPath}/?author=${requestScope.book.author}">${requestScope.book.author}</a>
                         </li>
                         <li>
-                            Читает: <a href="${pageContext.request.contextPath}/?speaker=${requestScope.book.speaker}">${requestScope.book.speaker}</a>
+                            Читает: <a
+                                href="${pageContext.request.contextPath}/?speaker=${requestScope.book.speaker}">${requestScope.book.speaker}</a>
                         </li>
                         <li>
-                            Жанр: <a href="${pageContext.request.contextPath}/?genre=${requestScope.book.genre}">${requestScope.book.genre}</a>
+                            Жанр: <a
+                                href="${pageContext.request.contextPath}/?genre=${requestScope.book.genre}">${requestScope.book.genre}</a>
                         </li>
                         <li>
                             <p>Длительность: ${requestScope.book.duration}</p>
@@ -44,7 +47,9 @@
                         </p>
                     </div>
                     <div class="b">
-                        <a href="${pageContext.request.contextPath}${requestScope.book.content}"><div class="button">Download</div></a>
+                        <a href="${pageContext.request.contextPath}${requestScope.book.content}">
+                            <div class="button">Download</div>
+                        </a>
                     </div>
                 </div>
             </div>

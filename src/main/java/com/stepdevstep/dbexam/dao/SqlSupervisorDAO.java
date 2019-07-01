@@ -21,19 +21,19 @@ public class SqlSupervisorDAO implements SupervisorDAOi {
     @Override
     public int add(Supervisor sup) {
 
-        int id=-1;
-        try(Connection con = SQLConnectionBuilder.getConnection();
-            PreparedStatement ps = con.prepareStatement(INSERT, new String[]{"id"})) {
-            ps.setString(1,sup.getLogin());
-            ps.setString(2,sup.getPass());
+        int id = -1;
+        try (Connection con = SQLConnectionBuilder.getConnection();
+             PreparedStatement ps = con.prepareStatement(INSERT, new String[]{"id"})) {
+            ps.setString(1, sup.getLogin());
+            ps.setString(2, sup.getPass());
             int affectedRows = ps.executeUpdate();
-            if (affectedRows==0) throw new SQLException("Book creating failed, no rows affected.");
+            if (affectedRows == 0) throw new SQLException("Book creating failed, no rows affected.");
 
-            try(ResultSet rs = ps.getGeneratedKeys()) {
-                if(rs.next())
-                    id=rs.getInt(1);
+            try (ResultSet rs = ps.getGeneratedKeys()) {
+                if (rs.next())
+                    id = rs.getInt(1);
             }
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return id;
@@ -41,26 +41,26 @@ public class SqlSupervisorDAO implements SupervisorDAOi {
 
     @Override
     public void update(Supervisor sup) {
-        try(Connection con = SQLConnectionBuilder.getConnection();
-            PreparedStatement ps = con.prepareStatement(UPDATE)) {
-            ps.setString(1,sup.getLogin());
-            ps.setString(2,sup.getPass());
-            ps.setInt(3,sup.getId());
+        try (Connection con = SQLConnectionBuilder.getConnection();
+             PreparedStatement ps = con.prepareStatement(UPDATE)) {
+            ps.setString(1, sup.getLogin());
+            ps.setString(2, sup.getPass());
+            ps.setInt(3, sup.getId());
             int affectedRows = ps.executeUpdate();
-            if(affectedRows==0)
+            if (affectedRows == 0)
                 throw new SQLException("Supervisor updating failed, no rows affected.");
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
     @Override
     public void delete(int id) {
-        try(Connection con = SQLConnectionBuilder.getConnection();
-            PreparedStatement ps = con.prepareStatement(DELETE)) {
-            ps.setInt(1,id);
+        try (Connection con = SQLConnectionBuilder.getConnection();
+             PreparedStatement ps = con.prepareStatement(DELETE)) {
+            ps.setInt(1, id);
             ps.executeUpdate();
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
@@ -68,15 +68,17 @@ public class SqlSupervisorDAO implements SupervisorDAOi {
     @Override
     public boolean exists(String login, String pass) {
         boolean value = false;
-        try(Connection con = SQLConnectionBuilder.getConnection();
-            PreparedStatement ps = con.prepareStatement(EXISTS)) {
-            ps.setString(1,login);
-            ps.setString(2,pass);
-            try(ResultSet rs = ps.executeQuery()) {
-                if(rs.next())
+        try (Connection con = SQLConnectionBuilder.getConnection();
+             PreparedStatement ps = con.prepareStatement(EXISTS)) {
+            ps.setString(1, login);
+            ps.setString(2, pass);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next())
                     value = rs.getBoolean(1);
-            }catch (SQLException e){e.printStackTrace();}
-        } catch (SQLException e){
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return value;
@@ -85,32 +87,40 @@ public class SqlSupervisorDAO implements SupervisorDAOi {
     @Override
     public Supervisor get(String login, String pass) {
         Supervisor sup = null;
-        try(Connection con = SQLConnectionBuilder.getConnection();
-            PreparedStatement ps = con.prepareStatement(SELECT)){
-            ps.setString(1,login);
-            ps.setString(2,pass);
-            try(ResultSet rs = ps.executeQuery()) {
-                if(rs.next())
+        try (Connection con = SQLConnectionBuilder.getConnection();
+             PreparedStatement ps = con.prepareStatement(SELECT)) {
+            ps.setString(1, login);
+            ps.setString(2, pass);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next())
                     sup = fill(rs);
-            }catch (SQLException e){e.printStackTrace();}
-        } catch (SQLException e){e.printStackTrace();}
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return sup;
     }
 
     @Override
     public List<Supervisor> getAll() {
         List<Supervisor> sup = new ArrayList<>();
-        try(Connection con = SQLConnectionBuilder.getConnection();
-            PreparedStatement ps = con.prepareStatement(SELECT_ALL)){
-            try(ResultSet rs = ps.executeQuery()) {
+        try (Connection con = SQLConnectionBuilder.getConnection();
+             PreparedStatement ps = con.prepareStatement(SELECT_ALL)) {
+            try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next())
                     sup.add(fill(rs));
-            }catch (SQLException e){e.printStackTrace();}
-        } catch (SQLException e){e.printStackTrace();}
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return sup;
     }
 
-    private Supervisor fill(ResultSet rs){
+    private Supervisor fill(ResultSet rs) {
         Supervisor sup = new Supervisor();
         try {
             sup.setId(rs.getInt("id"));
